@@ -1,0 +1,47 @@
+Your task is to generate the organization structure instruction <INS>. Below are some previous instructions with their costs and feedback. Note that Overall weighted cost = $STEP_RATIO$ * Steps_to_finish_the_task + comm_tokens_per_step.
+
+Instruction examples:
+
+$COORDINATOR_EXAMPLES$
+
+Below are some problem examples to be solved.
+
+Problem examples:
+# Problem example 1:
+I'm $AGENT_NAME$. I'm in a hurry to finish the housework with my friends $FREIND_NAMES$ together. Given our shared goal, dialogue history, and my progress and previous actions, please help me choose the best available action to achieve the goal as soon as possible. Note that I can hold two objects at a time and there are no costs for holding objects. All objects are denoted as <name> (id), such as <table> (712). Be aware that exploring or checking the items in another room may cost some time to walk there.
+Organization instructions: <INS>
+Goal: $GOAL$
+Progress: $PROGRESS$
+Dialogue history:
+$DIALOGUE_HISTORY$
+Previous actions: $ACTION_HISTORY$
+Available actions:
+$AVAILABLE_ACTIONS$
+Response format:
+{"thoughts" : "thoughts content", 
+"action" : "choose one action from the available actions above"}
+Note: You must respond in the json format above. The action choice must be the same as one of the available actions. If there's nothing left to do, the action can be "None".
+
+# Problem example 2:
+You are $AGENT_NAME$. You are in a hurry to finish the housework with your friends $FREIND_NAME$ together. Given your shared goal, dialogue history, and your progress and previous actions, please generate a list of short messages to send to one or some of $FREIND_NAME$ in order to achieve the goal as soon as possible. Note that you can hold two objects at a time. All objects are denoted as <name> (id), such as <table> (712). You can choose not to speak to anyone if there is enough information. If you want to send the message to everyone, the "receiver" field should be ["everyone"].
+Organization instructions: <INS>
+Goal: $GOAL$
+Progress: $PROGRESS$
+Previous actions: $ACTION_HISTORY$
+Dialogue history: {dialogue}
+Response format:
+    {"thoughts": "thoughts content", # think about the necessity of sending a message, as there are costs to send messages.
+        "receiver": list of receiver's name or ["everyone"] if you want to broadcast the message, 
+        "message": list of message contents for each receiver # if the messages are the same for all receivers, you can just send one message.
+        }
+Note: You must respond in the json format above with "{}". If there is no new information, you do not need to send a message, please fill in "receiver" and "message" as a string "None". As [walktowards] actions may take several steps to finish, you do not have new observations and do not need to make new decisions during [walktowards] actions. You can first concentrate on the current round of dialogue, and reply to the queries if necessary. Refer to the previous rounds of dialogue and do not repeat the similar dialogues. You do not have to be too polite so that we can save communication costs.
+
+Write your new organization structure instruction <INS> that is different from the old ones and has an overall weighted cost as low as possible, namely, fewer steps to finish the task and less communication at the same time. You should take the Agents’ scores into consideration as the evaluation of the leadership. The new instruction should reduce the problems of the previous examples, too. You should not go through all the possible choices as you can only try for limited times. 
+Restriction: your instruction should include the following aspects unless you want to output <empty instruction>.
+1. The topology of the communication. E.g., decentral, central with one specific leader, pyramid …
+2. The leader assignment. You have to assign a specific agent as the leader and clearly mention its name if there is one. If there are multi-level leaders, you should clearly assign the positions for each.
+The instruction should be concise, effective, and generally applicable to all problems above.
+Think step by step. Generate output in the following format:
+{"thoughts": "thoughts content", 
+"new organization structure instruction candidates": list of three diverse instruction contents, all in only one sentence,
+"new organization structure instruction": choose the best instruction and copy it here}

@@ -1,0 +1,14 @@
+Your task is to generate the summary for each of the following steps of a collaboration housekeeping task. Based on the summary, analyze the problems of each agent’s actions and messages, then give a relative leadership ranking for all the agents. 
+
+Problem examples:
+
+$CRITIC_EXAMPLES$
+
+End of the problem examples.
+
+You need to respond in the following format:
+{"thoughts":  think step by step to analyze the problem,
+"summary": list of the summary of key performance of the agents for each step, 
+"problems": list of the overall problems of each agent’s actions and messages during the whole task including analysis of cumulative communication costs,
+"leadership ranking": rank the agents according to key factors of leadership: communication skills, conflict resolution skills, flexibility, and strategy. Use ‘>’ and the agents’ names to output the ranking}
+Note: the organization structure instruction is "$ORGANIZATION_INSTRUCTIONS$"; the goal is "$GOAL$".  Note that the metric we use to evluate the team is - Overall weighted cost = $STEP_RATIO$ * Steps_to_finish_the_task + comm_tokens_per_step. The summary and problem should be concise.
