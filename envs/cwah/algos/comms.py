@@ -257,7 +257,7 @@ def visualize_comms(edges: List[Tuple], names, fig_folder_name="fig/comms"):
     for node1, node2 in graph_time.edges:
         edge_colors.append(edge_weights_time[f"{node1},{node2}"])
 
-    cmap = plt.cm.plasma_r # 颜色盘设置 refer to https://matplotlib.org/stable/tutorials/colors/colormaps.html
+    cmap = plt.cm.plasma_r 
     pos = nx.circular_layout(graph_time)
     nodes = nx.draw_networkx_nodes(graph_time, pos, node_size=800, node_color="tab:blue")
     edges = nx.draw_networkx_edges(
@@ -269,11 +269,11 @@ def visualize_comms(edges: List[Tuple], names, fig_folder_name="fig/comms"):
         edge_color=edge_colors,
         edge_cmap=cmap,
         width=2,
-        connectionstyle="arc3, rad=0.15", # 边弯曲形状 refer to https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.ConnectionStyle.html#matplotlib.patches.ConnectionStyle
+        connectionstyle="arc3, rad=0.15",
     )
     nx.draw_networkx_labels(graph_time, pos, font_size=10)
 
-    # set alpha value for each edge 透明度设置
+    # set alpha value for each edge
     for edge in edges:
         edge.set_alpha(0.9)
     pc = mpl.collections.PatchCollection(edges, cmap=cmap)
@@ -303,7 +303,7 @@ def visualize_comms(edges: List[Tuple], names, fig_folder_name="fig/comms"):
     for node1, node2 in graph_token.edges:
         edge_colors.append(edge_weights_token[f"{node1},{node2}"])
 
-    cmap = plt.cm.plasma_r # 颜色盘设置 refer to https://matplotlib.org/stable/tutorials/colors/colormaps.html
+    cmap = plt.cm.plasma_r
     pos = nx.circular_layout(graph_token)
     nodes = nx.draw_networkx_nodes(graph_token, pos, node_size=800, node_color="tab:blue")
     edges = nx.draw_networkx_edges(
@@ -315,11 +315,11 @@ def visualize_comms(edges: List[Tuple], names, fig_folder_name="fig/comms"):
         edge_color=edge_colors,
         edge_cmap=cmap,
         width=2,
-        connectionstyle="arc3, rad=0.15", # 边弯曲形状 refer to https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.ConnectionStyle.html#matplotlib.patches.ConnectionStyle
+        connectionstyle="arc3, rad=0.15", 
     )
     nx.draw_networkx_labels(graph_token, pos, font_size=10)
 
-    # set alpha value for each edge 透明度设置
+    # set alpha value for each edge 
     for edge in edges:
         edge.set_alpha(0.9)
     pc = mpl.collections.PatchCollection(edges, cmap=cmap)
