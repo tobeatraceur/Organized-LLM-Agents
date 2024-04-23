@@ -18,13 +18,8 @@ __pycache__/
 *.db
 *.out
 *.log
-plot*
-*.pkl
-*.pik
 *.DS_Store
 *.mp4
-*.csv
-*.json
 /envs/executable/
 /envs/tdw_mat/
 /envs/cwah/scripts/.cache/
