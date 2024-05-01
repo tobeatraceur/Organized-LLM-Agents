@@ -5,6 +5,8 @@ Source codes for the paper:
 
 [Paper](https://arxiv.org/abs/2403.12482)
 
+[Website](https://organized-llm-agents.netlify.app/)
+
 In this repo, we implement embodied and organized multi-LLM-agent teams in the environment [VirtualHome](https://github.com/xavierpuigf/virtualhome) to cooperate on household tasks. The agents can **make decisions** and **communicate freely** with each other based on LLMs. The codes support multi-agent communication (**>3 agents**) such as broadcasting, keeping silent, and selecting receivers to send distinct messages.
 
 ![Architecture](assets/Architecture_2.png)
