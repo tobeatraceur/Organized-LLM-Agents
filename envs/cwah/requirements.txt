@@ -228,3 +228,7 @@ zipp==3.3.0
 pyautogen
 transformers
 accelerate>=0.20.3
+gradio
+multiprocess
+tiktoken
+
